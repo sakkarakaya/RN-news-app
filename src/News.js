@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, SafeAreaView, Text, ScrollView } from 'react-native';
-import Card from './components/Card'
+import { View, SafeAreaView, Text, ScrollView, FlatList, Image, StyleSheet, Dimensions, ScrollViewComponent } from 'react-native';
+import { Card, Banner } from './components'
 
 
 const articles = [
@@ -12,16 +12,6 @@ const articles = [
         "urlToImage": "https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F606f4583367774b52d0f79b9%2F0x0.jpg%3FcropX1%3D0%26cropX2%3D1083%26cropY1%3D114%26cropY2%3D723",
         "publishedAt": "2021-04-10T09:00:00Z",
         "content": "Volkswagen used to be the mass market carmaker everyone loved for its mainstream vehicles that anyone could afford, like the Beetle, Golf and split-screen camper van. But then Dieselgate tarnished it… [+6424 chars]"
-    },
-    {
-
-        "author": "Billy Bambrough, Contributor, \n Billy Bambrough, Contributor\n https://www.forbes.com/sites/billybambrough/",
-        "title": "‘Moon Very Soon’—Cryptic Elon Musk Spurs Bitcoin On As Price Suddenly Blasts Past $60,000 And Ethereum Hits Fresh High",
-        "description": "The precise cause of the early Saturday morning bitcoin price surge was not immediately clear, however, a cryptic tweet from Tesla﻿ billionaire and bitcoin buyer Elon Musk has spurred the market higher...",
-        "url": "https://www.forbes.com/sites/billybambrough/2021/04/10/moon-very-soon-cryptic-elon-musk-spurs-bitcoin-on-as-price-suddenly-blasts-past-60000-and-ethereum-hits-fresh-high/",
-        "urlToImage": "https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F607161dad0b86f14d29ba693%2F0x0.jpg",
-        "publishedAt": "2021-04-10T08:50:00Z",
-        "content": "Bitcoin has suddenly surged higher, climbing firmly above the psychological $60,000 per bitcoin for the first time since mid-March. \r\nThe bitcoin price hit highs of $61,240 on the Luxembourg-based Bi… [+1502 chars]"
     },
     {
 
@@ -195,6 +185,16 @@ const articles = [
     },
     {
 
+        "author": "Billy Bambrough, Contributor, \n Billy Bambrough, Contributor\n https://www.forbes.com/sites/billybambrough/",
+        "title": "‘Moon Very Soon’—Cryptic Elon Musk Spurs Bitcoin On As Price Suddenly Blasts Past $60,000 And Ethereum Hits Fresh High",
+        "description": "The precise cause of the early Saturday morning bitcoin price surge was not immediately clear, however, a cryptic tweet from Tesla﻿ billionaire and bitcoin buyer Elon Musk has spurred the market higher...",
+        "url": "https://www.forbes.com/sites/billybambrough/2021/04/10/moon-very-soon-cryptic-elon-musk-spurs-bitcoin-on-as-price-suddenly-blasts-past-60000-and-ethereum-hits-fresh-high/",
+        "urlToImage": "https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F607161dad0b86f14d29ba693%2F0x0.jpg",
+        "publishedAt": "2021-04-10T08:50:00Z",
+        "content": "Bitcoin has suddenly surged higher, climbing firmly above the psychological $60,000 per bitcoin for the first time since mid-March. \r\nThe bitcoin price hit highs of $61,240 on the Luxembourg-based Bi… [+1502 chars]"
+    },
+    {
+
         "author": "247chrislange",
         "title": "Cathie Wood’s ARK Invest Buys and Sells 4/9",
         "description": "Here's a look at the ARK Invest trades for April 9, 2021.",
@@ -205,22 +205,38 @@ const articles = [
     }
 ]
 
-const mapItem = articles.map((item) => {
-    return <Card data={item} />
-})
+// const mapItem = articles.map((item) => {
+//     return <Card data={item} />
+// })
 
 const News = () => {
+
+    const myBanner = () => {
+        return <Banner />
+        
+    }
+
+    const renderItem = ({ item }) => (
+        <Card data={item} />
+    );
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <View>
+        <SafeAreaView style={{ flex: 1 }}>
 
-                    {mapItem}
 
-                </View>
-            </ScrollView>
+
+            <FlatList
+                data={articles}
+                renderItem={renderItem}
+                ListHeaderComponent={myBanner}
+
+            />
+
+
+
         </SafeAreaView>
     )
 }
+
+
 
 export default News

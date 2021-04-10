@@ -18,19 +18,27 @@ const Card = ({data}) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginVertical: 10
+        marginVertical: 10,
+        borderWidth: 1,
+        borderColor: '#e0e0e0'
     },
     title:{
         fontWeight: 'bold',
-        fontSize: 15
+        fontSize: 15,
+        margin: 5,
+        marginVertical: 8
     },
     description:{
+        margin: 5
 
     },
     image:{
-        height: Dimensions.get("window").height * 0.3,
-        width: Dimensions.get("window").width
+        height: Dimensions.get("window").height * 0.25,
+        borderRadius: 10,
+        resizeMode: 'contain',
+       
+        
     }
 })
 
-export default Card
+export {Card}
